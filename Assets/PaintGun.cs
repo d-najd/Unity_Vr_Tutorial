@@ -17,9 +17,7 @@ public class PaintGun : MonoBehaviour
 
     private void Paint(ActivateEventArgs arg)
     {
-        Physics.aaaaaaaaaaaaaa
-        Physics.Raycast(paintExitPoint.transform, Vector3.forward, raycastDistance);
-        paintExitPoint.forward   
+        // Physics.Raycast(paintExitPoint.transform, Vector3.forward, raycastDistance);
     }
 
 }
