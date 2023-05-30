@@ -15,11 +15,6 @@ public class FiringBulletOnActivate : MonoBehaviour
         grabbable.activated.AddListener(FireBullet);
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void FireBullet(ActivateEventArgs arg)
     {
         var spawnedBullet = Instantiate(bullet);
