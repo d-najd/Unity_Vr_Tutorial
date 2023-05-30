@@ -18,16 +18,31 @@ public class ActivateTeleportationRay : MonoBehaviour
     [SerializeField] private InputActionProperty leftCancel;
     [SerializeField] private InputActionProperty rightCancel;
     
+    [SerializeField] private XRRayInteractor leftRay;
+    [SerializeField] private XRRayInteractor rightRay;
+    
     private void Update()
     {
+        var isLeftRayHovering = leftRay.TryGetHitInfo(
+            out var leftPos, 
+            out var leftNormal, 
+            out var leftNumber,
+            out var leftValid);
+        
+        var isRightRayHovering = rightRay.TryGetHitInfo(
+            out var rightPos, 
+            out var rightNormal, 
+            out var rightNumber,
+            out var rightValid);
+        
         leftTeleportation.SetActive(
+            !isLeftRayHovering &&
             leftCancel.action.ReadValue<float>() == 0f &&
-            leftActivate.action.ReadValue<float>() > 0.1f
-        );
+            leftActivate.action.ReadValue<float>() > 0.1);
         rightTeleportation.SetActive(
+            !isRightRayHovering &&
             rightCancel.action.ReadValue<float>() == 0f &&
-            rightActivate.action.ReadValue<float>() > 0.1f 
-        );
+            rightActivate.action.ReadValue<float>() > 0.1f);
         // leftTeleportation.enabled = leftActivate.action.ReadValue<float>() > 0.1f;
         // rightTeleportation.enabled = rightActivate.action.ReadValue<float>() > 0.1f;
     }
