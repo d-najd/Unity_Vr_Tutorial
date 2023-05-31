@@ -26,21 +26,45 @@ public class PaintGun : MonoBehaviour
 
 	private void Paint(ActivateEventArgs arg)
 	{
-		Vector3 uvWorldPosition = Vector3.zero;
-		if (HitUVPosition(ref uvWorldPosition))
+		if (HitUVPosition(out var textureHitX, out var textureHitY, out var raycastHit))
 		{
 			//brushPaint.a=brushSize*2.0f; // Brushes have alpha to have a merging effect when painted over.
 			
-			var brushPaintInstance = Instantiate(brushPaint, brushContainer.transform, true); //Add the brush to our container to be wiped later
-			brushPaintInstance.transform.localPosition = uvWorldPosition; //The position of the brush (in the UVMap)
-			brushPaint.transform.localScale = Vector3.one * 10f; //The size of the brush
-			SaveTexture();
+			// var brushPaintInstance = Instantiate(brushPaint, brushContainer.transform, true); //Add the brush to our container to be wiped later
+			// brushPaintInstance.transform.localPosition = uvWorldPosition; //The position of the brush (in the UVMap)
+			// brushPaintInstance.transform.localScale = Vector3.one * 10f; //The size of the brush
+			
+			var spriteRenderer = brushPaint.GetComponent<SpriteRenderer>();
+			var tex = baseMaterial.mainTexture as Texture2D;
+			//var tex = DuplicateTexture(baseMaterial.mainTexture as Texture2D);
+			tex.SetPixels(textureHitX, textureHitY, spriteRenderer.sprite.texture.width, spriteRenderer.sprite.texture.height, spriteRenderer.sprite.texture.GetPixels());
+			tex.Apply();
+			StartCoroutine(SaveTextureToFile(tex));
+			// var spriteRenderer = brushPaintInstance.GetComponent<SpriteRenderer>();
+			// var tex = new Texture2D(baseMaterial.mainTexture.width, baseMaterial.mainTexture.height);
+			// spriteRenderer.sprite.texture.GetPixels()
+			// SaveTexture();
 		}
 
 	}
 
+	/**
+	 * return
+	 */
+	private Texture2D DuplicateTexture(Texture2D originalTexture)
+	{
+		var copyTexture = new Texture2D(originalTexture.width, originalTexture.height);
+		copyTexture.SetPixels(originalTexture.GetPixels());
+		copyTexture.Apply();
+		
+		return copyTexture;
+	}
+
 	private void SaveTexture()
 	{
+		
+		
+		/*
 		RenderTexture.active = canvasTexture;
 		Texture2D tex = new Texture2D(canvasTexture.width, canvasTexture.height, TextureFormat.RGB24, false);
 		tex.ReadPixels(new Rect(0, 0, canvasTexture.width, canvasTexture.height), 0, 0);
@@ -62,20 +86,29 @@ public class PaintGun : MonoBehaviour
 			//Clear brushes
 			// Destroy(child.gameObject);
 		}
+		*/
 
-		StartCoroutine(SaveTextureToFile(tex));
+		//StartCoroutine(SaveTextureToFile(tex));
 	}
 
-	private bool HitUVPosition(ref Vector3 uvWorldPosition)
+	private bool HitUVPosition(out int textureHitX, out int textureHitY, out RaycastHit raycastHit)
 	{
+		textureHitX = 0;
+		textureHitY = 0;
+		raycastHit = new RaycastHit();
+		
 		if (!Physics.Raycast(paintExitPoint.position, paintExitPoint.forward, out var hit, paintDistance) &&
 		    hit.collider is not MeshCollider)
 			return false;
-
-		uvWorldPosition.x = hit.textureCoord.x;
-		uvWorldPosition.y = hit.textureCoord.y;
-		uvWorldPosition.z = 0;
-		// Debug.Log($"Ray Hitting {hit.transform.name} At Position: {hit.transform.position}, and uvWorldPos {uvWorldPosition}");
+		
+		//var originalTexture = hit.transform.GetComponent<MeshRenderer>().material.mainTexture;
+		var originalTexture = baseMaterial.mainTexture;
+		var textureCoord = hit.textureCoord;
+		
+		raycastHit = hit;
+		textureHitX = (int) (textureCoord.x * originalTexture.width);
+		textureHitY = (int) (textureCoord.y * originalTexture.height);
+		Debug.Log($"Ray Hitting {hit.transform.name} At Position: {hit.transform.position}, and uvWorldPos {textureHitX} {textureHitY}");
 		return true;
 	}
 
