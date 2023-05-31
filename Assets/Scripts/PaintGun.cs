@@ -30,32 +30,41 @@ public class PaintGun : MonoBehaviour
 		if (HitUVPosition(ref uvWorldPosition))
 		{
 			//brushPaint.a=brushSize*2.0f; // Brushes have alpha to have a merging effect when painted over.
-
-			brushPaint.transform.parent = brushContainer.transform; //Add the brush to our container to be wiped later
-			brushPaint.transform.localPosition = uvWorldPosition; //The position of the brush (in the UVMap)
+			
+			var brushPaintInstance = Instantiate(brushPaint, brushContainer.transform, true); //Add the brush to our container to be wiped later
+			brushPaintInstance.transform.localPosition = uvWorldPosition; //The position of the brush (in the UVMap)
 			brushPaint.transform.localScale = Vector3.one * 10f; //The size of the brush
+			SaveTexture();
 		}
 
-		SaveTexture();
 	}
 
-	void SaveTexture()
+	private void SaveTexture()
 	{
 		RenderTexture.active = canvasTexture;
 		Texture2D tex = new Texture2D(canvasTexture.width, canvasTexture.height, TextureFormat.RGB24, false);
 		tex.ReadPixels(new Rect(0, 0, canvasTexture.width, canvasTexture.height), 0, 0);
+		for (var x = 0; x < 100; x++)
+		{
+			for (var y = 0; y < 100; y++)
+			{
+				tex.SetPixel(x, y, Color.green);
+			}
+		}
+		
 		tex.Apply();
 		RenderTexture.active = null;
+
+
 		baseMaterial.mainTexture = tex; //Put the painted texture as the base
 		foreach (Transform child in brushContainer.transform)
 		{
 			//Clear brushes
-			Destroy(child.gameObject);
+			// Destroy(child.gameObject);
 		}
 
 		StartCoroutine(SaveTextureToFile(tex));
 	}
-
 
 	private bool HitUVPosition(ref Vector3 uvWorldPosition)
 	{
@@ -70,10 +79,9 @@ public class PaintGun : MonoBehaviour
 		return true;
 	}
 
-	IEnumerator SaveTextureToFile(Texture2D savedTexture)
+	private static IEnumerator SaveTextureToFile(Texture2D savedTexture)
 	{
 		string fullPath = System.IO.Directory.GetCurrentDirectory() + "\\UserCanvas\\";
-		System.DateTime date = System.DateTime.Now;
 		string fileName = "CanvasTexture.png";
 		if (!System.IO.Directory.Exists(fullPath))
 			System.IO.Directory.CreateDirectory(fullPath);
@@ -82,6 +90,4 @@ public class PaintGun : MonoBehaviour
 		Debug.Log("<color=orange>Saved Successfully!</color>" + fullPath + fileName);
 		yield return null;
 	}
-
-
 }
