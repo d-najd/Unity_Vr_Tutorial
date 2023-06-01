@@ -39,7 +39,7 @@ public class PaintGun : MonoBehaviour
 			//var tex = DuplicateTexture(baseMaterial.mainTexture as Texture2D);
 			tex.SetPixels(textureHitX, textureHitY, spriteRenderer.sprite.texture.width, spriteRenderer.sprite.texture.height, spriteRenderer.sprite.texture.GetPixels());
 			tex.Apply();
-			StartCoroutine(SaveTextureToFile(tex));
+			// StartCoroutine(SaveTextureToFile(tex));
 			// var spriteRenderer = brushPaintInstance.GetComponent<SpriteRenderer>();
 			// var tex = new Texture2D(baseMaterial.mainTexture.width, baseMaterial.mainTexture.height);
 			// spriteRenderer.sprite.texture.GetPixels()

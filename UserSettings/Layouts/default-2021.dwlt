@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1024
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 17821
+  controlID: 41
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 17822
+  controlID: 18
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 17911
+  controlID: 19
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -215,8 +215,8 @@ MonoBehaviour:
     y: 0
     width: 1104
     height: 577
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -413,36 +413,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/External Packages/ARCADE - FREE Racing Car/Skybox/Day/Textures
+    - Assets/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/External Packages/ARCADE - FREE Racing Car/Skybox/Day/Textures
+  - Assets/Prefabs
   m_LastFoldersGridSize: 96
   m_LastProjectPath: /home/dimit/Documents/Programming/Work/Unity/Unity_Vr_Tutorial
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 255}
-    m_SelectedIDs: 64660100
-    m_LastClickedID: 91748
-    m_ExpandedIDs: 000000001a700000887700008a7700008c7700008e77000090770000927700009477000096770000987700009a7700009c7700009e770000507900007079000084790000a0790000048d0000088d00000c8d000048ec00004aec000054ec00001c2001001e200100ee4f010000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 268}
+    m_SelectedIDs: 64790000
+    m_LastClickedID: 31076
+    m_ExpandedIDs: 00000000047000006c7700006e77000070770000727700007477000076770000787700007a7700007c7700007e770000807700008277000040790000687900006a790000c2790000c479000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: ARCADE - FREE Racing Car
-      m_OriginalName: ARCADE - FREE Racing Car
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 31056
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -456,7 +456,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001a700000887700008a7700008c7700008e77000090770000927700009477000096770000987700009a7700009c7700009e770000
+    m_ExpandedIDs: 00000000047000006c7700006e77000070770000727700007477000076770000787700007a7700007c7700007e7700008077000082770000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -545,9 +545,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 64790000
       m_LastClickedID: 0
-      m_ExpandedIDs: 8ac6fcff8cc6fcff5acefcffec3efdff9e4afdff9870feffaa70feffee70feff1271feff1671feff2e71feff3071feffb676feff42fefeff56fefeffdefefeffb014ffffe017ffffd61affffac1effff9a33ffff9a3affffaa73ffffcc78ffff0ca0ffffbeb3ffffe4d5ffff6eefffffcef1ffffccf3ffff02f4ffff2cfbffff4688000054880000a8910000a49c0000d2ae0000ace100006ee2000006e300007aee000088ee00004aef0000e6ef0000
+      m_ExpandedIDs: 2cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -831,9 +831,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.7361255, y: -1.477765, z: 1.2812369}
+    m_Target: {x: -4.084578, y: 0.5170542, z: 3.144523}
     speed: 2
-    m_Value: {x: -1.7361253, y: -1.4777651, z: 1.281237}
+    m_Value: {x: -4.084578, y: 0.5170542, z: 3.144523}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -880,13 +880,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.3082221, y: -0.37658164, z: 0.13436472, w: -0.86327076}
+    m_Target: {x: 0.029638235, y: -0.6302701, z: 0.02440515, w: 0.77551806}
     speed: 2
-    m_Value: {x: -0.3022232, y: -0.38254493, z: 0.13391125, w: -0.86277944}
+    m_Value: {x: 0.02967269, y: -0.6290612, z: 0.024358926, w: 0.7764072}
   m_Size:
-    m_Target: 2.6920927
+    m_Target: 3.5058048
     speed: 2
-    m_Value: 2.6920927
+    m_Value: 3.5058048
   m_Ortho:
     m_Target: 0
     speed: 2
