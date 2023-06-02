@@ -9,9 +9,17 @@ public class PaintGun : MonoBehaviour
 	/// </summary>
 	[SerializeField] 
 	private Texture2D brushPaint;
-
 	[SerializeField] 
-	private Texture2D brushColor;
+	private Color brushColor;
+	/// <see cref="SetBrushColor"/> Method for changing the brush color
+	/// <remarks>Texture changes on runtime from the inspector are not accounted for</remarks>
+	private bool _isBrushColorChanged;
+	/// <summary>
+	/// Cached Brushed color pixels
+	/// </summary>
+	/// <see cref="Start"/> Pixels get generated here on start
+	/// <see cref="BrushPaintPixelsInstance"/> Pixels get regenerated if necessary here
+	private Color[] _cachedBrushColorPixels;
 
 	/// <summary>
 	/// the exit of the barrel of the paint gun
@@ -24,11 +32,23 @@ public class PaintGun : MonoBehaviour
 	private bool _painting;
 	private XRGrabInteractable _grabbable;
 
+	/// <see cref="BrushPaintPixelsInstance"/>
+	/// <see cref="GenerateBrushColorPixels"/>
+	public void SetBrushColor(Color newColor)
+	{
+		brushColor = newColor;
+		_isBrushColorChanged = true;
+	}
+	
+	/// <summary>
+	/// Painting on the texture was hitted.
+	/// </summary>
+	/// <see cref="SetBrushColor"/> For changing the color of the brush
 	private void Paint()
 	{
 		if (HitUVPosition(out var textureHitX, out var textureHitY, out var hitTexture) && hitTexture != null)
 		{
-			hitTexture.SetPixels(textureHitX, textureHitY, brushPaint.width, brushPaint.height, brushPaint.GetPixels());
+			hitTexture.SetPixels(textureHitX, textureHitY, brushPaint.width, brushPaint.height, BrushPaintPixelsInstance());
 			hitTexture.Apply();
 		}
 	}
@@ -52,19 +72,19 @@ public class PaintGun : MonoBehaviour
 
 		if (Physics.Raycast(paintGunBarrelExit.position, paintGunBarrelExit.forward, out var hit, paintDistance) &&
 		    hit.collider is MeshCollider &&
-		    hit.transform.gameObject.TryGetComponent(out Renderer renderer))
+		    hit.transform.gameObject.TryGetComponent(out Renderer hitRenderer))
 		{
 			var textureHitCords = hit.textureCoord;
 
-			hitTexture = renderer.material.mainTexture as Texture2D;
-			textureHitX = (int)(textureHitCords.x * renderer.material.mainTexture.width);
-			textureHitY = (int)(textureHitCords.y * renderer.material.mainTexture.height);
+			hitTexture = hitRenderer.material.mainTexture as Texture2D;
+			textureHitX = (int)(textureHitCords.x * hitRenderer.material.mainTexture.width);
+			textureHitY = (int)(textureHitCords.y * hitRenderer.material.mainTexture.height);
 			return true;
 		}
 
 		return false;
 	}
-
+	
 	/*
 	private static IEnumerator SaveTextureToFile(Texture2D savedTexture)
 	{
@@ -79,8 +99,45 @@ public class PaintGun : MonoBehaviour
 	}
 	*/
 	
+	/// <summary>
+	/// Returns instance of pixel data
+	/// </summary>
+	/// <see cref="SetBrushColor"/> For changing the color of the brush
+	/// <see cref="GenerateBrushColorPixels"/> For manually regenerating the pixels
+	/// <returns>Cached or new instance (if the color was changed) of the brush pixel color data</returns>
+	private Color[] BrushPaintPixelsInstance()
+	{
+		if (_isBrushColorChanged)
+		{
+			_cachedBrushColorPixels = GenerateBrushColorPixels();
+		}
+		
+		return _cachedBrushColorPixels;
+	}
+
+	/// <summary>
+	/// Generates pixel color data using the current brush and color
+	/// </summary>
+	/// <remarks>The color is copied from the brush paint and the alfa from the current pixel</remarks>
+	/// <returns>New instance of the color pixels</returns>
+	/// <see cref="BrushPaintPixelsInstance"/> Should be used whenever possible because it caches the data
+	private Color[] GenerateBrushColorPixels()
+	{
+		var pixels = brushPaint.GetPixels();
+		for (var p = 0; p < pixels.Length; p++)
+		{
+			var curPixel = pixels[p];
+			pixels[p] = new Color(brushColor.r, brushColor.g, brushColor.b, curPixel.a);
+		}
+
+		return pixels;
+	}
+	
 	private void Start()
 	{
+		// Generate Brush Color Pixels
+		_cachedBrushColorPixels = GenerateBrushColorPixels();
+		
 		_grabbable = GetComponent<XRGrabInteractable>();
 		_grabbable.activated.AddListener(StartPainting);
 		_grabbable.deactivated.AddListener(StopPainting);
