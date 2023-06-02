@@ -3530,7 +3530,7 @@ PrefabInstance:
     - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
         type: 3}
       propertyPath: brushColor.a
-      value: 1
+      value: 0.49803922
       objectReference: {fileID: 0}
     - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
         type: 3}
@@ -3545,7 +3545,7 @@ PrefabInstance:
     - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
         type: 3}
       propertyPath: brushColor.r
-      value: 0.49803922
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
         type: 3}
