@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -48,7 +49,24 @@ public class PaintGun : MonoBehaviour
 	{
 		if (HitUVPosition(out var textureHitX, out var textureHitY, out var hitTexture) && hitTexture != null)
 		{
-			hitTexture.SetPixels(textureHitX, textureHitY, brushPaint.width, brushPaint.height, BrushPaintPixelsInstance());
+			var hitTexturePixels = hitTexture.GetPixels(textureHitX, textureHitY, brushPaint.width, brushPaint.height);
+			var brushPaintPixels = BrushPaintPixelsInstance();
+			
+			// This could be improved with threading
+			for (var curP = 0; curP < hitTexturePixels.Length; curP++)
+			{
+				var curHitPixel = hitTexturePixels[curP];
+				var curBrushPixel = brushPaintPixels[curP];
+
+				// The alpha does not work the way I imagined it would but removing it messes the painting....
+				hitTexturePixels[curP] = new Color(
+					curHitPixel.r * Math.Abs(curBrushPixel.a - 1f) + curBrushPixel.r * curBrushPixel.a,
+					curHitPixel.g * Math.Abs(curBrushPixel.a - 1f) + curBrushPixel.g * curBrushPixel.a,
+					curHitPixel.b * Math.Abs(curBrushPixel.a - 1f) + curBrushPixel.b * curBrushPixel.a
+				);
+			}
+
+			hitTexture.SetPixels(textureHitX, textureHitY, brushPaint.width, brushPaint.height, hitTexturePixels);
 			hitTexture.Apply();
 		}
 	}
@@ -59,7 +77,10 @@ public class PaintGun : MonoBehaviour
 	/// <param name="textureHitX">The x coordinate where the ray hit in the texture. defaults to -1</param>
 	/// <param name="textureHitY">The y coordinate where the ray hit in the texture, defaults to -1</param>
 	/// <param name="hitTexture">The texture of the component that got hit, defaults to null</param>
-	/// <returns>true if the ray managed to hit a paintable surface false otherwise</returns>
+	/// <returns>
+	/// True if the ray managed to hit a paintable surface and the bounds of the painting wont be outisde then
+	/// true will be returned
+	/// </returns>
 	private bool HitUVPosition(
 		out int textureHitX,
 		out int textureHitY,
@@ -76,9 +97,14 @@ public class PaintGun : MonoBehaviour
 		{
 			var textureHitCords = hit.textureCoord;
 
-			hitTexture = hitRenderer.material.mainTexture as Texture2D;
-			textureHitX = (int)(textureHitCords.x * hitRenderer.material.mainTexture.width);
-			textureHitY = (int)(textureHitCords.y * hitRenderer.material.mainTexture.height);
+			hitTexture = (hitRenderer.material.mainTexture as Texture2D)!;
+			textureHitX = (int)(textureHitCords.x * hitTexture.width);
+			textureHitY = (int)(textureHitCords.y * hitTexture.height);
+			
+			// I am aware that this is not the best place for this but better than recalculating stuff
+			if (textureHitX + brushPaint.width > hitTexture.width ||
+			    textureHitY + brushPaint.height > hitTexture.height)
+				return false;
 			return true;
 		}
 
@@ -144,7 +170,7 @@ public class PaintGun : MonoBehaviour
 		_grabbable.selectExited.AddListener(SelectExited);
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		if (_painting)
 		{

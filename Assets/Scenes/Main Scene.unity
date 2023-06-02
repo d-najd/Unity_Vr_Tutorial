@@ -3527,6 +3527,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paint Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
+        type: 3}
+      propertyPath: brushColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
+        type: 3}
+      propertyPath: brushColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
+        type: 3}
+      propertyPath: brushColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
+        type: 3}
+      propertyPath: brushColor.r
+      value: 0.49803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
+        type: 3}
+      propertyPath: brushColor.rgba
+      value: 3892273664
+      objectReference: {fileID: 0}
     - target: {fileID: 6097571783397232889, guid: d76c1a36db0ffba2a9e73acec3ff3304,
         type: 3}
       propertyPath: m_InteractionManager
