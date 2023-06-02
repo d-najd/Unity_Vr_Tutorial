@@ -8,7 +8,10 @@ public class PaintGun : MonoBehaviour
 	/// The paint brush that will be used for painting
 	/// </summary>
 	[SerializeField] 
-	private Texture2D brushPaint; 
+	private Texture2D brushPaint;
+
+	[SerializeField] 
+	private Texture2D brushColor;
 
 	/// <summary>
 	/// the exit of the barrel of the paint gun
