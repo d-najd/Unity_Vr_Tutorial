@@ -8,6 +8,9 @@ public class PaintGun : MonoBehaviour
 	/// <summary>
 	/// The paint brush that will be used for painting
 	/// </summary>
+	/// <remarks>
+	/// The texture must be of type <c>Texture 2d</c>, have <c>read & write</c> enabled and use <c>RGBA 32 bit</c> format
+	/// </remarks>
 	[SerializeField] 
 	private Texture2D brushPaint;
 	[SerializeField] 
@@ -71,6 +74,7 @@ public class PaintGun : MonoBehaviour
 		}
 	}
 
+	// ReSharper disable Unity.PerformanceAnalysis
 	/// <summary>
 	/// Determines if the ray hits a paintable surface
 	/// </summary>
@@ -90,10 +94,12 @@ public class PaintGun : MonoBehaviour
 		textureHitX = -1;
 		textureHitY = -1;
 		hitTexture = null;
-
-		if (Physics.Raycast(paintGunBarrelExit.position, paintGunBarrelExit.forward, out var hit, paintDistance) &&
-		    hit.collider is MeshCollider &&
-		    hit.transform.gameObject.TryGetComponent(out Renderer hitRenderer))
+		
+		if (
+			Physics.Raycast(paintGunBarrelExit.position, paintGunBarrelExit.forward, out var hit, paintDistance, 1) &&
+			hit.transform.gameObject.GetComponent<PaintableSurface>().isActiveAndEnabled &&
+		    hit.transform.gameObject.TryGetComponent(out Renderer hitRenderer) 
+		    )
 		{
 			var textureHitCords = hit.textureCoord;
 

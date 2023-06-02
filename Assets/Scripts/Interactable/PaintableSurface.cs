@@ -3,6 +3,11 @@ using UnityEngine;
 /// <summary>
 /// Marker class for paintable surfaces
 /// </summary>
+/// <remarks>
+/// Paintable surfaces must be <c>Mesh Colliders</c>, and have main material which has an <c>albedo</c>, this texture
+/// must be of type <c>Texture 2D</c>, have <c>read & write</c> enabled and use <c>RGBA 32 bit</c> format (other formats except default which
+/// does not work are not tested)
+/// </remarks>
 public class PaintableSurface : MonoBehaviour
 {
    private void Start()
