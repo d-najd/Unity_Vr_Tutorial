@@ -1,23 +1,53 @@
 using System;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class PaintGun : MonoBehaviour
 {
+	/// <see cref="BrushPaint"/>
+	[SerializeField] 
+	private Texture2D brushPaint;
 	/// <summary>
 	/// The paint brush that will be used for painting
 	/// </summary>
 	/// <remarks>
 	/// The texture must be of type <c>Texture 2d</c>, have <c>read & write</c> enabled and use <c>RGBA 32 bit</c> format
 	/// </remarks>
-	[SerializeField] 
-	private Texture2D brushPaint;
-	[SerializeField] 
+	/// <see cref="BrushPaintPixelsInstance"/>
+	/// <see cref="GenerateBrushColorPixels"/>
+	public Texture2D BrushPaint
+	{
+		get => brushPaint;
+		set
+		{
+			brushPaint = value;
+			_isBrushAltered = true;
+		}
+	}
+	
+	/// <see cref="BrushColor"/>
+	[SerializeField]
 	private Color brushColor;
-	/// <see cref="SetBrushColor"/> Method for changing the brush color
+	/// <summary>
+	/// The color of the brush used for painting
+	/// </summary>
+	/// <see cref="BrushPaintPixelsInstance"/>
+	/// <see cref="GenerateBrushColorPixels"/>
+	public Color BrushColor
+	{
+		get => brushColor;
+		set
+		{
+			brushColor = value;
+			_isBrushAltered = true;
+		}
+	}
+
+	/// <see cref="BrushColor"/> Method for changing the brush color
 	/// <remarks>Texture changes on runtime from the inspector are not accounted for</remarks>
-	private bool _isBrushColorChanged;
+	private bool _isBrushAltered;
 	/// <summary>
 	/// Cached Brushed color pixels
 	/// </summary>
@@ -36,23 +66,15 @@ public class PaintGun : MonoBehaviour
 	private bool _painting;
 	private XRGrabInteractable _grabbable;
 
-	/// <see cref="BrushPaintPixelsInstance"/>
-	/// <see cref="GenerateBrushColorPixels"/>
-	public void SetBrushColor(Color newColor)
-	{
-		brushColor = newColor;
-		_isBrushColorChanged = true;
-	}
-	
 	/// <summary>
-	/// Painting on the texture was hitted.
+	/// Painting on the texture on hit.
 	/// </summary>
-	/// <see cref="SetBrushColor"/> For changing the color of the brush
+	/// <see cref="BrushColor"/> For changing the color of the brush
 	private void Paint()
 	{
 		if (HitUVPosition(out var textureHitX, out var textureHitY, out var hitTexture) && hitTexture != null)
 		{
-			var hitTexturePixels = hitTexture.GetPixels(textureHitX, textureHitY, brushPaint.width, brushPaint.height);
+			var hitTexturePixels = hitTexture.GetPixels(textureHitX, textureHitY, BrushPaint.width, BrushPaint.height);
 			var brushPaintPixels = BrushPaintPixelsInstance();
 			
 			// This could be improved with threading
@@ -69,7 +91,7 @@ public class PaintGun : MonoBehaviour
 				);
 			}
 
-			hitTexture.SetPixels(textureHitX, textureHitY, brushPaint.width, brushPaint.height, hitTexturePixels);
+			hitTexture.SetPixels(textureHitX, textureHitY, BrushPaint.width, BrushPaint.height, hitTexturePixels);
 			hitTexture.Apply();
 		}
 	}
@@ -96,9 +118,10 @@ public class PaintGun : MonoBehaviour
 		hitTexture = null;
 		
 		if (
-			Physics.Raycast(paintGunBarrelExit.position, paintGunBarrelExit.forward, out var hit, paintDistance, 1) &&
-			hit.transform.gameObject.GetComponent<PaintableSurface>().isActiveAndEnabled &&
-		    hit.transform.gameObject.TryGetComponent(out Renderer hitRenderer) 
+			Physics.Raycast(paintGunBarrelExit.position, paintGunBarrelExit.forward, out var hit, paintDistance) &&
+			hit.transform.gameObject.TryGetComponent(out PaintableSurface paintableSurface) &&
+			paintableSurface.isActiveAndEnabled &&
+		    hit.transform.gameObject.TryGetComponent(out Renderer hitRenderer)  
 		    )
 		{
 			var textureHitCords = hit.textureCoord;
@@ -108,8 +131,8 @@ public class PaintGun : MonoBehaviour
 			textureHitY = (int)(textureHitCords.y * hitTexture.height);
 			
 			// I am aware that this is not the best place for this but better than recalculating stuff
-			if (textureHitX + brushPaint.width > hitTexture.width ||
-			    textureHitY + brushPaint.height > hitTexture.height)
+			if (textureHitX + BrushPaint.width > hitTexture.width ||
+			    textureHitY + BrushPaint.height > hitTexture.height)
 				return false;
 			return true;
 		}
@@ -134,12 +157,12 @@ public class PaintGun : MonoBehaviour
 	/// <summary>
 	/// Returns instance of pixel data
 	/// </summary>
-	/// <see cref="SetBrushColor"/> For changing the color of the brush
+	/// <see cref="BrushColor"/> For changing the color of the brush
 	/// <see cref="GenerateBrushColorPixels"/> For manually regenerating the pixels
 	/// <returns>Cached or new instance (if the color was changed) of the brush pixel color data</returns>
 	private Color[] BrushPaintPixelsInstance()
 	{
-		if (_isBrushColorChanged)
+		if (_isBrushAltered)
 		{
 			_cachedBrushColorPixels = GenerateBrushColorPixels();
 		}
@@ -155,11 +178,11 @@ public class PaintGun : MonoBehaviour
 	/// <see cref="BrushPaintPixelsInstance"/> Should be used whenever possible because it caches the data
 	private Color[] GenerateBrushColorPixels()
 	{
-		var pixels = brushPaint.GetPixels();
+		var pixels = BrushPaint.GetPixels();
 		for (var p = 0; p < pixels.Length; p++)
 		{
 			var curPixel = pixels[p];
-			pixels[p] = new Color(brushColor.r, brushColor.g, brushColor.b, curPixel.a);
+			pixels[p] = new Color(BrushColor.r, BrushColor.g, BrushColor.b, curPixel.a);
 		}
 
 		return pixels;
