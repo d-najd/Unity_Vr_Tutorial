@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brushPaint: {fileID: 2800000, guid: 108f660541102fef6a34d96a9c77f635, type: 3}
+  brushColor: {r: 1, g: 0, b: 0, a: 1}
   paintGunBarrelExit: {fileID: 6097571783725666971}
   paintDistance: 30
 --- !u!114 &6097571783397232889
@@ -181,7 +182,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 1
+  m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1

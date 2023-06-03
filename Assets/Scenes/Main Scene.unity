@@ -746,11 +746,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Device Simulator
       objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
 --- !u!1 &494041451
@@ -978,6 +973,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &620020751 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
+    type: 3}
+  m_PrefabInstance: {fileID: 6097571783970875888}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b2ed9700055774dad280999f423147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &688054567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5030434202060040880, guid: 86d6fa58c41ad42bd97311dcbd4be974,
@@ -2799,18 +2806,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2959467708922500008, guid: 9ec6a8fc6925acb4abc5500eeecb8270, type: 3}
---- !u!114 &1781081292 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5030434202326478734, guid: 86d6fa58c41ad42bd97311dcbd4be974,
-    type: 3}
-  m_PrefabInstance: {fileID: 5030434202445761431}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a5df2202a8b96488c744be3bd0c33e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1860137692
 GameObject:
   m_ObjectHideFlags: 0
@@ -3102,6 +3097,117 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 5030434202445761431}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2111334996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2111335001}
+  - component: {fileID: 2111335000}
+  - component: {fileID: 2111334999}
+  - component: {fileID: 2111334998}
+  - component: {fileID: 2111334997}
+  m_Layer: 0
+  m_Name: Capsule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2111334997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111334996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282491bca5696c5549fb4c0960d3c4ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &2111334998
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111334996}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2111334999
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111334996}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 922c91395ff788e67b32ac93f7d6b0e7, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2111335000
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111334996}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2111335001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111334996}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.09, y: 1.363, z: -1.897}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3969987284741619359
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3239,41 +3345,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin
       objectReference: {fileID: 0}
-    - target: {fileID: 5030434202326478724, guid: 86d6fa58c41ad42bd97311dcbd4be974,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5030434202326478732, guid: 86d6fa58c41ad42bd97311dcbd4be974,
-        type: 3}
-      propertyPath: m_System
-      value: 
-      objectReference: {fileID: 1781081292}
-    - target: {fileID: 5030434202326478733, guid: 86d6fa58c41ad42bd97311dcbd4be974,
-        type: 3}
-      propertyPath: m_System
-      value: 
-      objectReference: {fileID: 1781081292}
-    - target: {fileID: 5030434202416224485, guid: 86d6fa58c41ad42bd97311dcbd4be974,
-        type: 3}
-      propertyPath: m_PositionInput.m_Action.m_Id
-      value: 526e9fb2-5420-453d-9268-c6eca737ad91
-      objectReference: {fileID: 0}
-    - target: {fileID: 5030434202416224485, guid: 86d6fa58c41ad42bd97311dcbd4be974,
-        type: 3}
-      propertyPath: m_RotationInput.m_Action.m_Id
-      value: eed244bc-fb85-4b5d-8df0-66a6d73e44b9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5030434202416224485, guid: 86d6fa58c41ad42bd97311dcbd4be974,
-        type: 3}
-      propertyPath: m_PositionInput.m_Action.m_Name
-      value: Position Input
-      objectReference: {fileID: 0}
-    - target: {fileID: 5030434202416224485, guid: 86d6fa58c41ad42bd97311dcbd4be974,
-        type: 3}
-      propertyPath: m_RotationInput.m_Action.m_Name
-      value: Rotation Input
-      objectReference: {fileID: 0}
     - target: {fileID: 5030434202816196533, guid: 86d6fa58c41ad42bd97311dcbd4be974,
         type: 3}
       propertyPath: m_InteractionManager
@@ -3363,31 +3434,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paint Gun
       objectReference: {fileID: 0}
-    - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
-        type: 3}
-      propertyPath: brushColor.a
-      value: 0.49803922
-      objectReference: {fileID: 0}
-    - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
-        type: 3}
-      propertyPath: brushColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
-        type: 3}
-      propertyPath: brushColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
-        type: 3}
-      propertyPath: brushColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
-        type: 3}
-      propertyPath: brushColor.rgba
-      value: 3892273664
-      objectReference: {fileID: 0}
     - target: {fileID: 6097571783397232889, guid: d76c1a36db0ffba2a9e73acec3ff3304,
         type: 3}
       propertyPath: m_InteractionManager
@@ -3403,7 +3449,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8013316820098544917}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.764, y: -0.09399998, z: 2.0620058}
+  m_LocalPosition: {x: -4.079, y: -0.09399998, z: 2.0620058}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3491,6 +3537,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8210835608630252350, guid: e0aaf9a00143ee4059f79a01f3031522,
+        type: 3}
+      propertyPath: paintGunScript
+      value: 
+      objectReference: {fileID: 620020751}
     - target: {fileID: 8623565875137515073, guid: e0aaf9a00143ee4059f79a01f3031522,
         type: 3}
       propertyPath: m_Camera
