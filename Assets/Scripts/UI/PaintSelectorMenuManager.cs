@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,24 +13,35 @@ public class PaintSelectorMenuManager : MonoBehaviour
     /// <remarks>Must contain the components <c>Rect Transform</c> and <c>Raw Image</c></remarks>
     [SerializeField] private GameObject currentBrushPreview;
     
-    public void ChangeBrushPaint(Texture2D newBrushTexture)
+    public void ChangeBrushPaint([NotNull] Texture2D newBrushTexture)
     {
         paintGunScript.BrushPaint = newBrushTexture;
+        SetPreviewBrushPaint(newBrushTexture);
     }
     
     public void ChangeColor(Color color)
     {
         paintGunScript.BrushColor = color;
+        SetPreviewBrushColor(color);
     }
 
-    /// <summary>
-    /// Method for changing the preview brush, fields with null value won't be updated
-    /// </summary>
-    private void UpdatePreviewBrushColor([CanBeNull] Texture2D newBrushTexture, [CanBeNull] Color newColor)
+    private void SetPreviewBrushPaint([NotNull] Texture2D newBrushTexture)
     {
-        if (newBrushTexture != null)
-        {
-            // currentBrushPreview
-        }
+        var previewBrushImage = currentBrushPreview.GetComponent<Image>();
+        var pivot = new Vector2(0.5f, 0.5f);
+        var tRect = new Rect(0, 0, newBrushTexture.width, newBrushTexture.height);
+        previewBrushImage.overrideSprite = Sprite.Create(newBrushTexture, tRect, pivot); 
+    }
+
+    private void SetPreviewBrushColor(Color newColor)
+    {
+        var previewBrushImage = currentBrushPreview.GetComponent<Image>();
+        previewBrushImage.color = newColor;
+    }
+    
+    private void Start()
+    {
+        SetPreviewBrushColor(paintGunScript.BrushColor);
+        SetPreviewBrushPaint(paintGunScript.BrushPaint);
     }
 }

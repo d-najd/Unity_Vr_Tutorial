@@ -1,13 +1,12 @@
 using System;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class PaintGun : MonoBehaviour
 {
 	/// <see cref="BrushPaint"/>
-	[SerializeField] 
+	[SerializeField]
 	private Texture2D brushPaint;
 	/// <summary>
 	/// The paint brush that will be used for painting

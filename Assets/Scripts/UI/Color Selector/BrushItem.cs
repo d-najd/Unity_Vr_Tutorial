@@ -10,6 +10,6 @@ public class BrushItem : MonoBehaviour
 
     public void ChangeBrush()
     {
-        paintSelectorMenuManager.ChangeBrushPaint(GetComponent<RawImage>().mainTexture as Texture2D);
+        paintSelectorMenuManager.ChangeBrushPaint((GetComponent<RawImage>().mainTexture as Texture2D)!);
     }
 }
