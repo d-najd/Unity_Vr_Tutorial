@@ -18,14 +18,44 @@ public class PaintGun : MonoBehaviour
 	/// <see cref="GenerateBrushColorPixels"/>
 	public Texture2D BrushPaint
 	{
-		get => brushPaint;
+		get
+		{
+			if (_brushResizeNecessary)
+			{
+				brushPaint = TexturesUtil.Resize(
+					brushPaint, 
+					(int) (MaxBrushSize * BrushSizeScale),
+					(int) (MaxBrushSize * BrushSizeScale)
+					);
+				_brushResizeNecessary = false;
+			}
+			return brushPaint;
+		}
 		set
 		{
-			brushPaint = value;
+			brushPaint = TexturesUtil.Resize(
+				value, 
+				(int) (MaxBrushSize * BrushSizeScale),
+				(int) (MaxBrushSize * BrushSizeScale)
+				);
+			_brushResizeNecessary = false;
 			_isBrushAltered = true;
 		}
 	}
-	
+	private bool _brushResizeNecessary = true;
+
+	private const int MaxBrushSize = 150;
+	private float _brushSizeScale = .5f;
+	public float BrushSizeScale
+	{
+		get => _brushSizeScale;
+		set
+		{
+			_brushSizeScale = value;
+			_brushResizeNecessary = true;
+		}
+	}
+
 	/// <see cref="BrushColor"/>
 	[SerializeField]
 	private Color brushColor;
@@ -43,7 +73,7 @@ public class PaintGun : MonoBehaviour
 			_isBrushAltered = true;
 		}
 	}
-
+	
 	/// <see cref="BrushColor"/> Method for changing the brush color
 	/// <remarks>Texture changes on runtime from the inspector are not accounted for</remarks>
 	private bool _isBrushAltered;
@@ -129,10 +159,6 @@ public class PaintGun : MonoBehaviour
 			textureHitX = (int)(textureHitCords.x * hitTexture.width);
 			textureHitY = (int)(textureHitCords.y * hitTexture.height);
 			
-			// I am aware that this is not the best place for this but better than recalculating stuff
-			if (textureHitX + BrushPaint.width > hitTexture.width ||
-			    textureHitY + BrushPaint.height > hitTexture.height)
-				return false;
 			return true;
 		}
 

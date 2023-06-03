@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PaintSelectorMenuManager : MonoBehaviour
@@ -14,15 +15,26 @@ public class PaintSelectorMenuManager : MonoBehaviour
     /// <remarks>Must contain the components <c>Rect Transform</c> and <c>Raw Image</c></remarks>
     [SerializeField] private GameObject currentBrushPreview;
 
+    [FormerlySerializedAs("defaultBrush")]
     [Header("Default Paint")]
-    [SerializeField] [SerializeAs("test")] private Texture2D defaultBrush;
+    [SerializeField] private Texture2D defaultPaint;
     [SerializeField] private Texture2D defaultDecal;
     [SerializeField] private Color defaultColor;
+    [SerializeField] [Range(0, 1)] private float defaultStrength = 1f;
     [SerializeField] [Range(0, 1)] private float defaultSize = .5f;
-    // The alpha of the color can be used as a strength
+    // The alpha of the color can be used as a strength 
     // [SerializeField] [Range(0, 1)] private float defaultStrength = 1f;
     [SerializeField] private bool defaultUseDecal = false;
-    
+
+    public void ResetBrush()
+    {
+        paintGunScript.BrushPaint = defaultPaint;
+        paintGunScript.BrushColor = defaultColor;
+        
+        SetPreviewBrushPaint(defaultPaint);
+        SetPreviewBrushColor(defaultColor);
+    }
+
     public void ChangeBrushPaint([NotNull] Texture2D newBrushTexture)
     {
         paintGunScript.BrushPaint = newBrushTexture;
