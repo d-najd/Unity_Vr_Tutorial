@@ -8,6 +8,7 @@ public class PaintGun : MonoBehaviour
 	/// <see cref="BrushPaint"/>
 	[SerializeField]
 	private Texture2D brushPaint;
+	private Texture2D _brushPaintUnscaled;
 	/// <summary>
 	/// The paint brush that will be used for painting
 	/// </summary>
@@ -23,9 +24,9 @@ public class PaintGun : MonoBehaviour
 			if (_brushResizeNecessary)
 			{
 				brushPaint = TexturesUtil.Resize(
-					brushPaint, 
-					(int) (MaxBrushSize * BrushSizeScale),
-					(int) (MaxBrushSize * BrushSizeScale)
+					_brushPaintUnscaled, 
+					(int) (MaxBrushSizePx * BrushSize),
+					(int) (MaxBrushSizePx * BrushSize)
 					);
 				_brushResizeNecessary = false;
 			}
@@ -33,10 +34,11 @@ public class PaintGun : MonoBehaviour
 		}
 		set
 		{
+			_brushPaintUnscaled = value;
 			brushPaint = TexturesUtil.Resize(
 				value, 
-				(int) (MaxBrushSize * BrushSizeScale),
-				(int) (MaxBrushSize * BrushSizeScale)
+				(int) (MaxBrushSizePx * BrushSize),
+				(int) (MaxBrushSizePx * BrushSize)
 				);
 			_brushResizeNecessary = false;
 			_isBrushAltered = true;
@@ -44,14 +46,18 @@ public class PaintGun : MonoBehaviour
 	}
 	private bool _brushResizeNecessary = true;
 
-	private const int MaxBrushSize = 150;
-	private float _brushSizeScale = .5f;
-	public float BrushSizeScale
+	private const int MaxBrushSizePx = 150;
+	private float _brushSize = 1f;
+	/// <summary>
+	/// <value>Range 0 to 1 in other words a scale</value>
+	/// </summary>
+	public float BrushSize
 	{
-		get => _brushSizeScale;
+		get => _brushSize;
 		set
 		{
-			_brushSizeScale = value;
+			if (value < .05) value = .05f;
+			_brushSize = value;
 			_brushResizeNecessary = true;
 		}
 	}
@@ -159,6 +165,10 @@ public class PaintGun : MonoBehaviour
 			textureHitX = (int)(textureHitCords.x * hitTexture.width);
 			textureHitY = (int)(textureHitCords.y * hitTexture.height);
 			
+			// I am aware that this is not the best place for this but better than recalculating stuff
+			if (textureHitX + BrushPaint.width > hitTexture.width ||
+			    textureHitY + BrushPaint.height > hitTexture.height)
+				return false;
 			return true;
 		}
 
