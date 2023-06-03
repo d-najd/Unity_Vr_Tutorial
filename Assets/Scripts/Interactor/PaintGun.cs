@@ -17,6 +17,7 @@ public class PaintGun : MonoBehaviour
 	/// </remarks>
 	/// <see cref="BrushPaintPixelsInstance"/>
 	/// <see cref="GenerateBrushColorPixels"/>
+	[NotNull]
 	public Texture2D BrushPaint
 	{
 		get
@@ -139,7 +140,7 @@ public class PaintGun : MonoBehaviour
 	/// <param name="textureHitY">The y coordinate where the ray hit in the texture, defaults to -1</param>
 	/// <param name="hitTexture">The texture of the component that got hit, defaults to null</param>
 	/// <returns>
-	/// True if the ray managed to hit a paintable surface and the bounds of the painting wont be outisde then
+	/// True if the ray managed to hit a paintable surface and the bounds of the painting wont be outside then
 	/// true will be returned
 	/// </returns>
 	private bool HitUVPosition(

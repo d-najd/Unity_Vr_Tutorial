@@ -23,10 +23,8 @@ public class PaintSelectorMenuManager : MonoBehaviour
     [SerializeField] [Range(0, 1)] private float defaultSize = .5f;
     // The alpha of the color can be used as a strength 
     // [SerializeField] [Range(0, 1)] private float defaultStrength = 1f;
-    [SerializeField] private bool defaultUseDecal = false;
+    [SerializeField] private bool defaultUseDecal;
 
-    private const float MaxBrushSizePx = 150;
-    
     /// The scale of the preview brush when the game goes in runtime
     private Vector3 _originalPreviewBrushScale;
 
@@ -41,25 +39,25 @@ public class PaintSelectorMenuManager : MonoBehaviour
         SetPreviewBrushSize(defaultSize);
     }
 
-    public void ChangeBrushPaint([NotNull] Texture2D newBrushTexture)
+    public void ChangeBrushPaint([NotNull] RawImage rawImage)
     {
-        paintGunScript.BrushPaint = newBrushTexture;
+        paintGunScript.BrushPaint = (rawImage.mainTexture as Texture2D)!;
         SetPreviewBrushPaint(paintGunScript.BrushPaint);
     }
 
-    public void ChangeBrushSize(Slider slider)
+    public void ChangeBrushSize([NotNull] Slider slider)
     {
         paintGunScript.BrushSize = slider.value;
         SetPreviewBrushSize(paintGunScript.BrushSize);
     }
     
-    public void ChangeColor(Color color)
+    public void ChangeColor([NotNull] RawImage rawImage)
     {
-        paintGunScript.BrushColor = color;
+        paintGunScript.BrushColor = rawImage.color;
         SetPreviewBrushColor(paintGunScript.BrushColor);
     }
 
-    private void SetPreviewBrushPaint(Texture2D brushTexture)
+    private void SetPreviewBrushPaint([NotNull] Texture2D brushTexture)
     {
         var previewBrushImage = previewBrush.GetComponent<Image>();
         var pivot = new Vector2(0.5f, 0.5f);

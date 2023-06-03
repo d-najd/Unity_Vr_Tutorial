@@ -121,7 +121,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6517549461325241962}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
+        m_MethodName: ResetBrush
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1581959952584410288
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +294,6 @@ GameObject:
   - component: {fileID: 1960991051209371258}
   - component: {fileID: 7387040669941703306}
   - component: {fileID: 5517377123803197589}
-  - component: {fileID: 3254407675137422868}
   - component: {fileID: 2243664888219276002}
   m_Layer: 5
   m_Name: Green
@@ -346,19 +357,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &3254407675137422868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876708546980008473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49cfd03289ace5c198245966b34417e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paintSelectorMenuManager: {fileID: 8210835608630252350}
 --- !u!114 &2243664888219276002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,17 +397,17 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7818193716180985859}
+  m_TargetGraphic: {fileID: 5517377123803197589}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3254407675137422868}
-        m_TargetAssemblyTypeName: ColorPickerItem, Assembly-CSharp
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
         m_MethodName: ChangeColor
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 5517377123803197589}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -582,7 +580,19 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
+        m_MethodName: ChangeBrushSize
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 536115738696488070}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2828786299995252000
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +604,6 @@ GameObject:
   - component: {fileID: 7941744587540622293}
   - component: {fileID: 2604264462088132987}
   - component: {fileID: 2952032696470216464}
-  - component: {fileID: 5775720905176269099}
   - component: {fileID: 6895618420222962689}
   m_Layer: 5
   m_Name: Black
@@ -658,19 +667,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &5775720905176269099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2828786299995252000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49cfd03289ace5c198245966b34417e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paintSelectorMenuManager: {fileID: 8210835608630252350}
 --- !u!114 &6895618420222962689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,17 +707,17 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7818193716180985859}
+  m_TargetGraphic: {fileID: 2952032696470216464}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5775720905176269099}
-        m_TargetAssemblyTypeName: ColorPickerItem, Assembly-CSharp
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
         m_MethodName: ChangeColor
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2952032696470216464}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -739,7 +735,6 @@ GameObject:
   - component: {fileID: 1143368831533111182}
   - component: {fileID: 51650205226975625}
   - component: {fileID: 1489211818}
-  - component: {fileID: 1489211819}
   m_Layer: 5
   m_Name: Brush Strong
   m_TagString: Untagged
@@ -842,35 +837,22 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 2449504494032359115}
+  m_TargetGraphic: {fileID: 51650205226975625}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1489211819}
-        m_TargetAssemblyTypeName: BrushItem, Assembly-CSharp
-        m_MethodName: ChangeBrush
-        m_Mode: 1
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
+        m_MethodName: ChangeBrushPaint
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 51650205226975625}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1489211819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2993836339422720571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80920a76dc16b33a38ebc8636dd1b8ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paintSelectorMenuManager: {fileID: 8210835608630252350}
 --- !u!1 &3086798677327960556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,7 +1016,6 @@ GameObject:
   - component: {fileID: 400316472401110330}
   - component: {fileID: 6609958766348103918}
   - component: {fileID: 7818193716180985859}
-  - component: {fileID: 7145751622173126981}
   - component: {fileID: 4652385422860071385}
   m_Layer: 5
   m_Name: White
@@ -1098,19 +1079,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &7145751622173126981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3580556796279451906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49cfd03289ace5c198245966b34417e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paintSelectorMenuManager: {fileID: 8210835608630252350}
 --- !u!114 &4652385422860071385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1155,13 +1123,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7145751622173126981}
-        m_TargetAssemblyTypeName: ColorPickerItem, Assembly-CSharp
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
         m_MethodName: ChangeColor
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 7818193716180985859}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1503,7 +1471,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.1999999}
-  m_SizeDelta: {x: 75, y: 75}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1242730426267195147
 CanvasRenderer:
@@ -1627,7 +1595,6 @@ GameObject:
   - component: {fileID: 2994675205519962392}
   - component: {fileID: 4463343203758422031}
   - component: {fileID: 3078773847017653246}
-  - component: {fileID: 8815153607881647558}
   - component: {fileID: 5934480421359730999}
   m_Layer: 5
   m_Name: Pink
@@ -1691,19 +1658,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &8815153607881647558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4772618703880541841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49cfd03289ace5c198245966b34417e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paintSelectorMenuManager: {fileID: 8210835608630252350}
 --- !u!114 &5934480421359730999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1744,17 +1698,17 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7818193716180985859}
+  m_TargetGraphic: {fileID: 3078773847017653246}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8815153607881647558}
-        m_TargetAssemblyTypeName: ColorPickerItem, Assembly-CSharp
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
         m_MethodName: ChangeColor
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 3078773847017653246}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1771,7 +1725,6 @@ GameObject:
   - component: {fileID: 796244898353524264}
   - component: {fileID: 5618819995794058760}
   - component: {fileID: 6913012499333477510}
-  - component: {fileID: 8308261650354665944}
   - component: {fileID: 3858950983090761640}
   m_Layer: 5
   m_Name: Blue
@@ -1835,19 +1788,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &8308261650354665944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4807562409849304868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49cfd03289ace5c198245966b34417e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paintSelectorMenuManager: {fileID: 8210835608630252350}
 --- !u!114 &3858950983090761640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1888,17 +1828,17 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7818193716180985859}
+  m_TargetGraphic: {fileID: 6913012499333477510}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8308261650354665944}
-        m_TargetAssemblyTypeName: ColorPickerItem, Assembly-CSharp
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
         m_MethodName: ChangeColor
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 6913012499333477510}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2128,7 +2068,6 @@ GameObject:
   - component: {fileID: 6011472266229519823}
   - component: {fileID: 8442874481377300293}
   - component: {fileID: 8264958795875183816}
-  - component: {fileID: 5158681014704446925}
   - component: {fileID: 4736974502184605348}
   m_Layer: 5
   m_Name: Red
@@ -2192,19 +2131,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &5158681014704446925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5437643004839939988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49cfd03289ace5c198245966b34417e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paintSelectorMenuManager: {fileID: 8210835608630252350}
 --- !u!114 &4736974502184605348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2245,17 +2171,17 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7818193716180985859}
+  m_TargetGraphic: {fileID: 8264958795875183816}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5158681014704446925}
-        m_TargetAssemblyTypeName: ColorPickerItem, Assembly-CSharp
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
         m_MethodName: ChangeColor
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 8264958795875183816}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2345,7 +2271,6 @@ GameObject:
   - component: {fileID: 2948205548039997507}
   - component: {fileID: 8880088466530550205}
   - component: {fileID: 2594517469679486903}
-  - component: {fileID: 1627513834825627636}
   - component: {fileID: 4148215533704258544}
   m_Layer: 5
   m_Name: Cyan
@@ -2409,19 +2334,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &1627513834825627636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5610676867186988438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49cfd03289ace5c198245966b34417e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paintSelectorMenuManager: {fileID: 8210835608630252350}
 --- !u!114 &4148215533704258544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2462,17 +2374,17 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7818193716180985859}
+  m_TargetGraphic: {fileID: 2594517469679486903}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1627513834825627636}
-        m_TargetAssemblyTypeName: ColorPickerItem, Assembly-CSharp
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
         m_MethodName: ChangeColor
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2594517469679486903}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2580,7 +2492,6 @@ GameObject:
   - component: {fileID: 1465686789120148246}
   - component: {fileID: 8399042292530186928}
   - component: {fileID: 2780502467989259892}
-  - component: {fileID: 3306235879963663705}
   - component: {fileID: 6362632222858187077}
   m_Layer: 5
   m_Name: Yellow
@@ -2644,19 +2555,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &3306235879963663705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5982117855476936440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49cfd03289ace5c198245966b34417e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paintSelectorMenuManager: {fileID: 8210835608630252350}
 --- !u!114 &6362632222858187077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2697,17 +2595,17 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7818193716180985859}
+  m_TargetGraphic: {fileID: 2780502467989259892}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3306235879963663705}
-        m_TargetAssemblyTypeName: ColorPickerItem, Assembly-CSharp
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
         m_MethodName: ChangeColor
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2780502467989259892}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3212,7 +3110,6 @@ GameObject:
   - component: {fileID: 6061160383726756027}
   - component: {fileID: 3748034888681595557}
   - component: {fileID: 1693867280}
-  - component: {fileID: 1693867281}
   m_Layer: 5
   m_Name: Brush Medium
   m_TagString: Untagged
@@ -3315,35 +3212,22 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 2449504494032359115}
+  m_TargetGraphic: {fileID: 3748034888681595557}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1693867281}
-        m_TargetAssemblyTypeName: BrushItem, Assembly-CSharp
-        m_MethodName: ChangeBrush
-        m_Mode: 1
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
+        m_MethodName: ChangeBrushPaint
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 3748034888681595557}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1693867281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6883505622651871313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80920a76dc16b33a38ebc8636dd1b8ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paintSelectorMenuManager: {fileID: 8210835608630252350}
 --- !u!1 &7083496505119411747
 GameObject:
   m_ObjectHideFlags: 0
@@ -3567,7 +3451,6 @@ GameObject:
   - component: {fileID: 5291053734450573839}
   - component: {fileID: 2449504494032359115}
   - component: {fileID: 1238781755}
-  - component: {fileID: 1238781756}
   m_Layer: 5
   m_Name: Brush Weak
   m_TagString: Untagged
@@ -3674,31 +3557,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1238781756}
-        m_TargetAssemblyTypeName: BrushItem, Assembly-CSharp
-        m_MethodName: ChangeBrush
-        m_Mode: 1
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
+        m_MethodName: ChangeBrushPaint
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2449504494032359115}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1238781756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8410383323836139925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80920a76dc16b33a38ebc8636dd1b8ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paintSelectorMenuManager: {fileID: 8210835608630252350}
 --- !u!1 &8585510184794422902
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,8 +3974,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintGunScript: {fileID: 0}
-  currentBrushPreview: {fileID: 4356792960395021130}
-  defaultBrush: {fileID: 2800000, guid: a35a965b891042ee7a79478a2418f0e3, type: 3}
+  previewBrush: {fileID: 4356792960395021130}
+  defaultPaint: {fileID: 2800000, guid: 108f660541102fef6a34d96a9c77f635, type: 3}
   defaultDecal: {fileID: 2800000, guid: 58b9304ab9663e14fb3369500efef94c, type: 3}
   defaultColor: {r: 1, g: 0, b: 0, a: 1}
   defaultStrength: 1
