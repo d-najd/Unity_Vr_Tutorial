@@ -3512,11 +3512,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 51650205226975625, guid: e0aaf9a00143ee4059f79a01f3031522,
-        type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 2800000, guid: 8b4570f76d504eca9900e17e764c6042, type: 3}
     - target: {fileID: 1057532384819543790, guid: e0aaf9a00143ee4059f79a01f3031522,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3536,6 +3531,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210835608630252350, guid: e0aaf9a00143ee4059f79a01f3031522,
+        type: 3}
+      propertyPath: defaultColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210835608630252350, guid: e0aaf9a00143ee4059f79a01f3031522,
+        type: 3}
+      propertyPath: defaultColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210835608630252350, guid: e0aaf9a00143ee4059f79a01f3031522,
+        type: 3}
+      propertyPath: defaultColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210835608630252350, guid: e0aaf9a00143ee4059f79a01f3031522,
+        type: 3}
+      propertyPath: defaultColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8210835608630252350, guid: e0aaf9a00143ee4059f79a01f3031522,
         type: 3}
