@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -10,17 +12,30 @@ using UnityEngine;
 /// </remarks>
 public class PaintableSurface : MonoBehaviour
 {
+   private Texture2D _clonedOriginalTexture;
+
    private void Start()
    {
-      // The texture is being replaced because unity does not refresh the textures when exiting playmode.
-      var originalMaterial = GetComponent<Renderer>().material;
-      originalMaterial.mainTexture = CloneTexture2D(originalMaterial.mainTexture as Texture2D);
-   }
+       // The texture is being replaced because unity does not refresh the textures when exiting playmode.
+       var originalMaterial = GetComponent<Renderer>().material;
+       var originalTexture = originalMaterial.mainTexture;
+       
+       // Textures smaller than 1024 pixels need to be resized
+       if (originalTexture.width < 1024 || originalTexture.height < 1024)
+       {
+           var resizeRatio = 1024 / Math.Min(originalTexture.width, originalTexture.height);
+           _clonedOriginalTexture = TexturesUtil.Resize(
+               originalTexture as Texture2D,
+               originalTexture.width * resizeRatio,
+               originalTexture.height * resizeRatio
+           );
+       }
+       else
+       {
+           // The texture is being cloned here because unity doesn't refresh the textures when exiting playmode
+           _clonedOriginalTexture = TexturesUtil.CloneTexture2D(originalTexture as Texture2D);
+       }
 
-   private static Texture2D CloneTexture2D(Texture2D originalTexture)
-   {
-      var newTexture = new Texture2D(originalTexture.width, originalTexture.height);
-      newTexture.SetPixels(originalTexture.GetPixels());
-      return newTexture;
+       originalMaterial.mainTexture = TexturesUtil.CloneTexture2D(_clonedOriginalTexture);
    }
 }
