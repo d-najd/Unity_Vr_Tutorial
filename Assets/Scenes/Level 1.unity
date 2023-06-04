@@ -530,16 +530,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49582f0082bf3253b8dcffd5fa7cb3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paintableGameObjects: []
-  startingMaterials: []
-  targetTextures: []
-  maxSingleColorValueError: 20
+  selectedIndex: 0
+  paintableGameObjects:
+  - {fileID: 7792504590890530137}
+  startingMaterials:
+  - {fileID: 2100000, guid: eb1a71617b597927b80bad8ed3876797, type: 2}
+  targetTextures:
+  - {fileID: 2800000, guid: 1f271317f9999a7ceb8375a21562fac2, type: 3}
+  coverageMaps:
+  - {fileID: 2800000, guid: 39e9f889f805c5892b4a4bc76a0116f6, type: 3}
+  maxSingleColorValueError: 0.1
   maxCombinedColorValueError: 0.25
-  menu: {fileID: 0}
-  paintProgress: {fileID: 0}
-  paintCoverage: {fileID: 0}
+  menu: {fileID: 795931311}
+  currentlyPainting: {fileID: 689128714}
+  paintProgress: {fileID: 1470910948}
+  paintCoverage: {fileID: 1680106349}
   showButton:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Show Button
       m_Type: 0
@@ -549,8 +556,8 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
-  selectedIndex: 0
+    m_Reference: {fileID: 3183680136302104032, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
 --- !u!114 &620020751 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6097571783397232884, guid: d76c1a36db0ffba2a9e73acec3ff3304,
@@ -730,7 +737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &795931313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2052,7 +2059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 282491bca5696c5549fb4c0960d3c4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  surfaceName: 
+  surfaceName: Wall
 --- !u!64 &2068771084
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2600,4 +2607,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 282491bca5696c5549fb4c0960d3c4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  surfaceName: 
+  surfaceName: Car
