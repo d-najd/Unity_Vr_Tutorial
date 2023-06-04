@@ -1,3 +1,4 @@
+using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -85,6 +86,7 @@ public class PaintSelectorMenuManager : MonoBehaviour
     {
         _originalPreviewBrushScale = previewBrush.GetComponent<RectTransform>().localScale;
         
+        // adding delay does not fix the problem
         SetPreviewBrushColor(paintGunScript.BrushColor);
         SetPreviewBrushPaint(paintGunScript.BrushPaint);
         SetPreviewBrushSize(paintGunScript.BrushSize);
