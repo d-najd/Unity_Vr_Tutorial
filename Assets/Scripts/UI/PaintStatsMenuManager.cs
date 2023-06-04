@@ -163,5 +163,4 @@ public class PaintStatsMenuManager : MonoBehaviour
             this.CurName = curName;
         }
     }
-
 }
