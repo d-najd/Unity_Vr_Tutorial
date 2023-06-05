@@ -2358,11 +2358,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paint Gun
       objectReference: {fileID: 0}
-    - target: {fileID: 6097571783397232889, guid: d76c1a36db0ffba2a9e73acec3ff3304,
-        type: 3}
-      propertyPath: m_InteractionManager
-      value: 
-      objectReference: {fileID: 1015679456}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d76c1a36db0ffba2a9e73acec3ff3304, type: 3}
 --- !u!1 &7792504590890530137

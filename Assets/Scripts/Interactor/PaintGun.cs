@@ -77,6 +77,7 @@ public class PaintGun : MonoBehaviour
 		set
 		{
 			brushColor = value;
+			particleSystem.ChangeParticleSystemColor(value);
 			_isBrushAltered = true;
 		}
 	}
@@ -101,6 +102,10 @@ public class PaintGun : MonoBehaviour
 
 	private bool _painting;
 	private XRGrabInteractable _grabbable;
+	
+	#pragma warning disable
+	[SerializeField] 
+	private PaintGunParticleSystem particleSystem;
 
 	/// <summary>
 	/// Painting on the texture on hit.
@@ -233,6 +238,8 @@ public class PaintGun : MonoBehaviour
 		_grabbable.activated.AddListener(StartPainting);
 		_grabbable.deactivated.AddListener(StopPainting);
 		_grabbable.selectExited.AddListener(SelectExited);
+		
+		particleSystem.ChangeParticleSystemColor(BrushColor);
 	}
 
 	private void FixedUpdate()
@@ -246,15 +253,18 @@ public class PaintGun : MonoBehaviour
 	private void StopPainting(DeactivateEventArgs arg0)
 	{
 		_painting = false;
-	}
-
-	private void StartPainting(ActivateEventArgs arg)
-	{
-		_painting = true;
+		particleSystem.StopParticleSystem();
 	}
 	
 	private void SelectExited(SelectExitEventArgs arg0)
 	{
 		_painting = false;
+		particleSystem.StopParticleSystem();
+	}
+
+	private void StartPainting(ActivateEventArgs arg)
+	{
+		_painting = true;
+		particleSystem.StartParticleSystem();
 	}
 }
