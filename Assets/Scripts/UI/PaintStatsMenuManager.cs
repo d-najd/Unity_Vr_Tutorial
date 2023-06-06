@@ -44,7 +44,6 @@ public class PaintStatsMenuManager : MonoBehaviour
     
     [SerializeField] private InputActionProperty showButton;
 
-
     private readonly Dictionary<int, PaintableDataHolder> _paintableDataHolders = new Dictionary<int, PaintableDataHolder>();
     
     // TODO add validity checks for texture sizes (if they match)

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PaintSelectorMenuManager : MonoBehaviour
 {
     // TODO maybe it will be better to check if the player actually holds a paint gun and then use its reference but this is more convenient
-    [FormerlySerializedAs("paintGunScript")] [SerializeField] private TexturePainter texturePainterScript;
+    [FormerlySerializedAs("texturePainterScript")] [FormerlySerializedAs("paintGunScript")] [SerializeField] private OurTexturePainter ourTexturePainterScript;
 
     /// <summary>
     /// The preview brush in the paint selector menu
@@ -30,9 +30,9 @@ public class PaintSelectorMenuManager : MonoBehaviour
 
     public void ResetBrush()
     {
-        texturePainterScript.BrushSize = defaultSize;
-        // texturePainterScript.BrushPaint = defaultPaint;
-        texturePainterScript.BrushColor = defaultColor;
+        ourTexturePainterScript.BrushSize = defaultSize;
+        // ourTexturePainterScript.BrushPaint = defaultPaint;
+        ourTexturePainterScript.BrushColor = defaultColor;
         
         SetPreviewBrushPaint(defaultPaint);
         SetPreviewBrushColor(defaultColor);
@@ -41,28 +41,26 @@ public class PaintSelectorMenuManager : MonoBehaviour
 
     public void ChangeBrushPaint([NotNull] RawImage rawImage)
     {
-        // texturePainterScript.BrushPaint = (rawImage.mainTexture as Texture2D)!;
-        // SetPreviewBrushPaint(texturePainterScript.BrushPaint);
+        // ourTexturePainterScript.BrushPaint = (rawImage.mainTexture as Texture2D)!;
+        // SetPreviewBrushPaint(ourTexturePainterScript.BrushPaint);
     }
 
     public void ChangeBrushSize([NotNull] Slider slider)
     {
-        texturePainterScript.BrushSize = slider.value;
-        SetPreviewBrushSize(texturePainterScript.BrushSize);
+        ourTexturePainterScript.BrushSize = slider.value;
+        SetPreviewBrushSize(ourTexturePainterScript.BrushSize);
     }
     
     public void ChangeColor([NotNull] RawImage rawImage)
     {
-        texturePainterScript.BrushColor = rawImage.color;
-        SetPreviewBrushColor(texturePainterScript.BrushColor);
+        ourTexturePainterScript.BrushColor = rawImage.color;
+        SetPreviewBrushColor(ourTexturePainterScript.BrushColor);
     }
 
     private void SetPreviewBrushPaint([NotNull] Texture2D brushTexture)
     {
         var previewBrushImage = previewBrush.GetComponent<Image>();
-        var pivot = new Vector2(0.5f, 0.5f);
-        var tRect = new Rect(0, 0, brushTexture.width, brushTexture.height);
-        previewBrushImage.overrideSprite = Sprite.Create(brushTexture, tRect, pivot); 
+        previewBrushImage.overrideSprite = TexturesUtil.Texture2DToSprite(brushTexture);
     }
 
     /// <param name="sizeScale">Value between 0 and 1, scale is calculated using <c>MaxBrushSizePc</c></param>
@@ -85,9 +83,9 @@ public class PaintSelectorMenuManager : MonoBehaviour
     {
         _originalPreviewBrushScale = previewBrush.GetComponent<RectTransform>().localScale;
         
-        SetPreviewBrushColor(texturePainterScript.BrushColor);
+        SetPreviewBrushColor(ourTexturePainterScript.BrushColor);
         // TODO fetching the brush from the player is buggy for some reason, delay does not work
-        // SetPreviewBrushPaint(texturePainterScript.BrushPaint);
-        SetPreviewBrushSize(texturePainterScript.BrushSize);
+        // SetPreviewBrushPaint(ourTexturePainterScript.BrushPaint);
+        SetPreviewBrushSize(ourTexturePainterScript.BrushSize);
     }
 }

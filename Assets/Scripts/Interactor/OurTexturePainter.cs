@@ -1,8 +1,7 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class TexturePainter : MonoBehaviour
+public class OurTexturePainter : MonoBehaviour
 {
 	/// <summary>The paint brush that will be used for painting</summary>
 	/// <remarks>Should not be modified in runtime</remarks>
@@ -56,7 +55,7 @@ public class TexturePainter : MonoBehaviour
 
 	// TODO move this to another script and create "observers" for when the state of the paint gun will change thus notifying them
 	#pragma warning disable
-	[FormerlySerializedAs("particleSystem")] [SerializeField] 
+	[SerializeField] 
 	private PaintGunParticleSystemManager particleSystemManager;
 	
 	/// <summary>
@@ -76,13 +75,11 @@ public class TexturePainter : MonoBehaviour
 	/// <see cref="BrushColor"/> For changing the color of the brush
 	private void Paint()
 	{
-		if (HitUVPosition(out var uvHitPos))
+		if (HitUVPosition(out var uvHitPos, out var brushContainer))
 		{
-			/*
-			var brushObj = Instantiate(BrushEntity, brushContainer.transform, true);
+			var brushObj = Instantiate(BrushEntity, brushContainer.Container.transform, true);
 			brushObj.transform.localPosition=uvHitPos; //The position of the brush (in the UVMap)
-			brushObj.transform.localScale=Vector3.one*BrushSize;//The size of the brush
-			*/
+			// brushObj.transform.localScale=Vector3.one*BrushSize;//The size of the brush
 		}
 	}
 
@@ -90,14 +87,17 @@ public class TexturePainter : MonoBehaviour
 	/// Determines if the ray hits a paintable surface
 	/// </summary>
 	/// <param name="uvHitPos">The position where the ray hit the texture, defaults to <c>Vector2.zero</c></param>
+	/// <param name="brushContainer">container for the brush strokes on a given gameobject's texture, defaults to <c>null</c></param>
 	/// <returns>
 	/// True if the ray managed to hit a paintable surface otherwise false
 	/// </returns>
 	private bool HitUVPosition(
-		out Vector2 uvHitPos
-	)
+		out Vector2 uvHitPos,
+		out BrushContainer brushContainer
+	) 
 	{
 		uvHitPos = Vector2.zero;
+		brushContainer = null;
 		if (
 			Physics.Raycast(paintGunBarrelExit.position, paintGunBarrelExit.forward, out var hit, paintDistance) &&
 			hit.transform.gameObject.TryGetComponent(out PaintableSurface paintableSurface) &&
@@ -105,6 +105,7 @@ public class TexturePainter : MonoBehaviour
 		    )
 		{
 			uvHitPos = hit.textureCoord;
+			brushContainer = paintableSurface.BrushContainer;
 			return true;
 		}
 		return false;
