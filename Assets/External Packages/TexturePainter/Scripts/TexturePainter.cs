@@ -20,14 +20,14 @@ public class TexturePainter : MonoBehaviour {
 	[SerializeField] private GameObject brushPaint;
 	[SerializeField] private GameObject brushDecal;
 
-	Painter_BrushMode mode; //Our painter mode (Paint brushes or decals)
-	float brushSize=1.0f; //The size of our brush
-	Color brushColor; //The selected color
-	int brushCounter=0,MAX_BRUSH_COUNT=1000; //To avoid having millions of brushes
+	Painter_BrushMode mode = Painter_BrushMode.PAINT; //Our painter mode (Paint brushes or decals)
+	float brushSize=.1f; //The size of our brush
+	Color brushColor = Color.red; //The selected color
+	int brushCounter=0,MAX_BRUSH_COUNT=1; //To avoid having millions of brushes
 	bool saving=false; //Flag to check if we are saving the texture
 	
 	void Update () {
-		brushColor = ColorSelector.GetColor ();	//Updates our painted color with the selected color
+		// brushColor = ColorSelector.GetColor ();	//Updates our painted color with the selected color
 		if (Input.GetMouseButton(0)) {
 			DoAction();
 		}
@@ -40,6 +40,7 @@ public class TexturePainter : MonoBehaviour {
 			return;
 		Vector3 uvWorldPosition=Vector3.zero;		
 		if(HitTestUVPosition(ref uvWorldPosition)){
+			Debug.Log("Hitting Object");
 			GameObject brushObj;
 			if(mode==Painter_BrushMode.PAINT)
 			{
@@ -50,6 +51,8 @@ public class TexturePainter : MonoBehaviour {
 			{
 				brushObj = brushDecal;
 			}
+
+			brushObj = Instantiate(brushObj);
 			brushColor.a=brushSize*2.0f; // Brushes have alpha to have a merging effect when painted over.
 			brushObj.transform.parent=brushContainer.transform; //Add the brush to our container to be wiped later
 			brushObj.transform.localPosition=uvWorldPosition; //The position of the brush (in the UVMap)
