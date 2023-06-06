@@ -1630,6 +1630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 282491bca5696c5549fb4c0960d3c4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  surfaceName: 
 --- !u!23 &974732532
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2273,6 +2274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 282491bca5696c5549fb4c0960d3c4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  surfaceName: 
 --- !u!1 &1466611670
 GameObject:
   m_ObjectHideFlags: 0
@@ -3120,6 +3122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 282491bca5696c5549fb4c0960d3c4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  surfaceName: 
 --- !u!64 &2111334998
 MeshCollider:
   m_ObjectHideFlags: 0
