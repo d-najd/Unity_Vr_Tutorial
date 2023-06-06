@@ -31,4 +31,18 @@ public static class TexturesUtil
       newTexture.SetPixels(originalTexture.GetPixels());
       return newTexture;
    }
+    
+	/*
+	private static IEnumerator SaveTextureToFile(Texture2D savedTexture)
+	{
+		string fullPath = System.IO.Directory.GetCurrentDirectory() + "\\UserCanvas\\";
+		string fileName = "CanvasTexture.png";
+		if (!System.IO.Directory.Exists(fullPath))
+			System.IO.Directory.CreateDirectory(fullPath);
+		var bytes = savedTexture.EncodeToPNG();
+		System.IO.File.WriteAllBytes(fullPath + fileName, bytes);
+		Debug.Log("<color=orange>Saved Successfully!</color>" + fullPath + fileName);
+		yield return null;
+	}
+	*/
 }
