@@ -1,7 +1,6 @@
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
-using UnityEngine.Rendering.Universal;
 
 public static class BrushContainerCreator
 {
@@ -21,6 +20,8 @@ public static class BrushContainerCreator
             }
         }
     }
+
+    public const float CameraOrthographicSize = 0.5f;
     
     /// <param name="textureSprite">A sprite of the main texture (albedo)</param>
     /// <returns>
@@ -105,21 +106,20 @@ public static class BrushContainerCreator
                 parent = holder.transform,
                 localPosition = new Vector3(0, 0, -2),
             }
-        };
-
+        };  
         
         // Adding the camera component and some settings
         renderCamera.AddComponent<Camera>();
         var cameraComponent = renderCamera.GetComponent<Camera>();
         cameraComponent.orthographic = true;
-        cameraComponent.orthographicSize = .5f;
+        cameraComponent.orthographicSize = CameraOrthographicSize;
         cameraComponent.nearClipPlane = .3f;
         cameraComponent.farClipPlane = 5f;
         cameraComponent.clearFlags = CameraClearFlags.Nothing; 
         // TODO find out why this wont work
         // cameraComponent.cullingMask = (int)LayersEnum.RenderTexture;
 
-        var extraCameraData = renderCamera.GetComponent<UniversalAdditionalCameraData>();
+        // var extraCameraData = renderCamera.GetComponent<UniversalAdditionalCameraData>();
 
         return new BaseBrushContainer(
             container,
