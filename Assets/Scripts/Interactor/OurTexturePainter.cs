@@ -78,6 +78,7 @@ public class OurTexturePainter : MonoBehaviour
 		if (HitUVPosition(out var uvHitPos, out var brushContainer))
 		{
 			var brushObj = Instantiate(BrushEntity, brushContainer.Container.transform, true);
+			brushObj.layer = (int)LayersEnum.RenderTexture;
 			brushObj.transform.localPosition=uvHitPos; //The position of the brush (in the UVMap)
 			// brushObj.transform.localScale=Vector3.one*BrushSize;//The size of the brush
 		}

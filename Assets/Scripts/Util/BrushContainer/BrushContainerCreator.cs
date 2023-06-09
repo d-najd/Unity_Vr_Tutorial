@@ -1,13 +1,26 @@
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public static class BrushContainerCreator
 {
+    private static readonly object Sync = new object();
+    
     private static readonly Vector3 InitialOffset = new Vector3(0, -1000, 0);
     private static readonly Vector3 OffsetBetweenContainers = new Vector3(20, 0, 0);
-    // TODO create an accessor to this value which will be synchronized, nothing else has to be synchronized.
-    private const int InitializedContainers = 0;
+    private static int _initializedContainers;
+    private static int InitializedContainers
+    {
+        get
+        {
+            lock (Sync)
+            {
+                ++_initializedContainers;
+                return _initializedContainers;
+            }
+        }
+    }
     
     /// <param name="textureSprite">A sprite of the main texture (albedo)</param>
     /// <returns>
@@ -22,10 +35,16 @@ public static class BrushContainerCreator
         // Converting the given sprite (main texture) to game object making it child of the container
         var textureSpriteToGameObject = new GameObject()
         {
+            isStatic = true,
+            layer = (int) LayersEnum.RenderTexture,
             transform =
             {
-                parent = baseBrushContainer.Container.transform
-            }
+                parent = baseBrushContainer.Container.transform,
+                // The local position is not at z 0 because we want to use kind of a "layer" system. with the main 
+                // texture behind everything else
+                localPosition = new Vector3(0, 0, 2f), 
+                localScale = new Vector3(0.1f, 0.1f, 0.1f)
+            },
         };
         var spriteRenderer = textureSpriteToGameObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = textureSprite;
@@ -47,41 +66,48 @@ public static class BrushContainerCreator
     /// </summary>
     [NotNull] public static BaseBrushContainer NewBrushContainer()
     {
+        var curInitializedContainer = InitializedContainers;
         
         // Creating the holder which will hold the render camera and the container for the brushes
-        var holder = new GameObject("_BrushContainerHolder1")
+        var holder = new GameObject($"_BrushContainerHolder {curInitializedContainer}")
         {
+            isStatic = true,
+            layer = (int) LayersEnum.RenderTexture,
             transform =
             {
                 position = new Vector3(
-                    InitialOffset.x + (OffsetBetweenContainers.x * InitializedContainers),
+                    InitialOffset.x + (OffsetBetweenContainers.x * curInitializedContainer),
                     InitialOffset.y,
-                    InitialOffset.z + (OffsetBetweenContainers.z * InitializedContainers)
+                    InitialOffset.z + (OffsetBetweenContainers.z * curInitializedContainer)
                 )
             }
         };
-
+        
         // Creating the container for the brushes
         var container = new GameObject("_BrushContainer")
         {
+            isStatic = true,
+            layer = (int) LayersEnum.RenderTexture,
             transform =
             {
-                parent = holder.transform
+                parent = holder.transform,
+                localPosition = Vector3.zero
             }
         };
 
         // Creating the render camera used to render camera for render texture
         var renderCamera = new GameObject("_RenderCamera")
         {
-
+            isStatic = true,
+            layer = (int) LayersEnum.RenderTexture,
             transform =
             {
-                position = new Vector3(0, 0, -2),
-                parent = holder.transform
+                parent = holder.transform,
+                localPosition = new Vector3(0, 0, -2),
             }
-
         };
 
+        
         // Adding the camera component and some settings
         renderCamera.AddComponent<Camera>();
         var cameraComponent = renderCamera.GetComponent<Camera>();
@@ -89,6 +115,11 @@ public static class BrushContainerCreator
         cameraComponent.orthographicSize = .5f;
         cameraComponent.nearClipPlane = .3f;
         cameraComponent.farClipPlane = 5f;
+        cameraComponent.clearFlags = CameraClearFlags.Nothing; 
+        // TODO find out why this wont work
+        // cameraComponent.cullingMask = (int)LayersEnum.RenderTexture;
+
+        var extraCameraData = renderCamera.GetComponent<UniversalAdditionalCameraData>();
 
         return new BaseBrushContainer(
             container,

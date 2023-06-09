@@ -7,5 +7,5 @@ public enum LayersEnum
     UI = 5,
     Interactable = 6,
     Player = 7,
-    Paintable = 8,
+    RenderTexture = 8,
 }
