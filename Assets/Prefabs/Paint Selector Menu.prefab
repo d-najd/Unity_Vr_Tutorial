@@ -409,7 +409,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8210835608630252350}
         m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
-        m_MethodName: ChangeColor
+        m_MethodName: ChangeBrushColor
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 6711119181897643470}
@@ -722,7 +722,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8210835608630252350}
         m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
-        m_MethodName: ChangeColor
+        m_MethodName: ChangeBrushColor
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7506714069521593793}
@@ -1140,7 +1140,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8210835608630252350}
         m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
-        m_MethodName: ChangeColor
+        m_MethodName: ChangeBrushColor
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1404490060648105889}
@@ -1725,7 +1725,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8210835608630252350}
         m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
-        m_MethodName: ChangeColor
+        m_MethodName: ChangeBrushColor
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7328339247303603886}
@@ -1858,7 +1858,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8210835608630252350}
         m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
-        m_MethodName: ChangeColor
+        m_MethodName: ChangeBrushColor
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 3764065884743760358}
@@ -2204,7 +2204,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8210835608630252350}
         m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
-        m_MethodName: ChangeColor
+        m_MethodName: ChangeBrushColor
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8484917407602407483}
@@ -2413,7 +2413,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8210835608630252350}
         m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
-        m_MethodName: ChangeColor
+        m_MethodName: ChangeBrushColor
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 3449945095153913518}
@@ -2637,7 +2637,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8210835608630252350}
         m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
-        m_MethodName: ChangeColor
+        m_MethodName: ChangeBrushColor
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8881424769760693670}

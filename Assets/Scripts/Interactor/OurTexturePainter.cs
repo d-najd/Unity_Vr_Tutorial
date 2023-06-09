@@ -67,22 +67,44 @@ public class OurTexturePainter : MonoBehaviour
 	}
 	
 	// starting brush size
-	private float _brushSize = .25f;
+	[SerializeField]
+	[Range(0,1)]
+	private float brushSize = .25f;
 	/// <summary>
 	/// <value>Range 0.001 to 1</value>
 	/// <remarks>the brush size threshold is currently set at 0.001, that means any values below that will be converted to
 	/// 0.001. This is because a game object with size of 0 is buggy in best case scenario</remarks>
 	/// </summary>
+	/// <exception cref="ArgumentOutOfRangeException">if the value is not between 0-1f</exception>
 	public float BrushSize 
 	{
-		get => _brushSize;
+		get => brushSize;
 		set
 		{
 			if (value < 0f || value > 1f ) throw new ArgumentOutOfRangeException(nameof(value), "out of bounds, expected range 0-1f");
 			
 			// if brush size is 0 then it will cause an error
 			if (value < .001) value = .001f;
-			_brushSize = value;
+			brushSize = value;
+		}
+	}
+
+	// starting brush strength
+	[SerializeField]
+	[Range(0,1)]
+	private float brushStrength = 1f;
+
+	/// <summary>
+	/// <value>Range 0 to 1</value>
+	/// </summary>
+	/// <exception cref="ArgumentOutOfRangeException">if the value is not between 0-1f</exception>
+	public float BrushStrength
+	{
+		get => brushStrength;
+		set
+		{
+			if (value < 0f || value > 1f ) throw new ArgumentOutOfRangeException(nameof(value), "out of bounds, expected range 0-1f");
+			brushStrength = value;
 		}
 	}
 
@@ -110,16 +132,15 @@ public class OurTexturePainter : MonoBehaviour
 	/// <summary>
 	/// Painting on the texture on hit.
 	/// </summary>
-	/// <see cref="BrushColor"/> For changing the color of the brush
 	private void Paint()
 	{
 		if (HitUVPosition(out var uvHitPos, out var brushContainer))
 		{
 			var brushObj = Instantiate(BrushEntity, brushContainer.Container.transform, true);
 			brushObj.layer = (int)LayersEnum.RenderTexture;
-			brushObj.transform.localPosition=uvHitPos; //The position of the brush (in the UVMap)
+			brushObj.transform.localPosition =uvHitPos; //The position of the brush (in the UVMap)
 			brushObj.transform.localScale = Vector3.one * (LocalBrushSize * BrushSize);
-			brushObj.GetComponent<SpriteRenderer>().color = BrushColor;
+			brushObj.GetComponent<SpriteRenderer>().color = new Color(BrushColor.r, BrushColor.g, BrushColor.b, BrushStrength);
 		}
 	}
 

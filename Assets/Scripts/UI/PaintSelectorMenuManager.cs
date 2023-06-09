@@ -50,11 +50,18 @@ public class PaintSelectorMenuManager : MonoBehaviour
         SetPreviewBrushSize(texturePainter.BrushSize);
     }
     
-    public void ChangeColor([NotNull] Image rawImage)
+    public void ChangeStrength([NotNull] Slider slider)
+    {
+        texturePainter.BrushStrength = slider.value;
+        SetPreviewBrushStrength(slider.value);
+    }
+    
+    public void ChangeBrushColor([NotNull] Image rawImage)
     {
         texturePainter.BrushColor = rawImage.color;
         SetPreviewBrushColor(texturePainter.BrushColor);
     }
+
 
     private void SetPreviewBrushPaint([NotNull] Sprite sprite)
     {
@@ -62,22 +69,31 @@ public class PaintSelectorMenuManager : MonoBehaviour
         previewBrushImage.overrideSprite = sprite;
     }
 
-    /// <param name="sizeScale">must be value between 0 and 1</param>
-    private void SetPreviewBrushSize(float sizeScale)
+    /// <param name="size">must be value between 0 and 1</param>
+	/// <exception cref="ArgumentOutOfRangeException">if the value is not between 0-1f</exception>
+    private void SetPreviewBrushSize(float size)
     {
-        if (sizeScale < 0f || sizeScale > 1f ) throw new ArgumentOutOfRangeException(nameof(sizeScale), "out of bounds, expected range 0-1f");
+        if (size < 0f || size > 1f ) throw new ArgumentOutOfRangeException(nameof(size), "out of bounds, expected range 0-1f");
         
         var rTransform = previewBrush.GetComponent<RectTransform>();
         rTransform.localScale = new Vector3(
-            _previewBrushImageComponentScale.x * sizeScale,
-            _previewBrushImageComponentScale.y * sizeScale, 
-            _previewBrushImageComponentScale.z * sizeScale);
+            _previewBrushImageComponentScale.x * size,
+            _previewBrushImageComponentScale.y * size, 
+            _previewBrushImageComponentScale.z * size);
+    }
+
+    private void SetPreviewBrushStrength(float strength)
+    {
+        if (strength < 0f || strength > 1f ) throw new ArgumentOutOfRangeException(nameof(strength), "out of bounds, expected range 0-1f");
+
+        var previewBrushImage = previewBrush.GetComponent<Image>();
+        previewBrushImage.color = new Color(previewBrushImage.color.r, previewBrushImage.color.g, previewBrushImage.color.b, strength);
     }
 
     private void SetPreviewBrushColor(Color newColor)
     {
         var previewBrushImage = previewBrush.GetComponent<Image>();
-        previewBrushImage.color = newColor;
+        previewBrushImage.color = new Color(newColor.r, newColor.g, newColor.b, previewBrushImage.color.a);
     }
     
     private void Start()
