@@ -127,6 +127,26 @@ public class OurTexturePainter : MonoBehaviour
 	private float paintDistance = 30f;
 
 	private bool _painting;
+
+	private bool Painting
+	{
+		get => _painting;
+		set
+		{
+			if (value)
+			{
+				particleSystemManager.StartParticleSystem();
+			}
+			else
+			{
+				_currentlyPaintedContainer?.ContainerHolder.SetActive(false);
+				_currentlyPaintedContainer = null;
+				particleSystemManager.StopParticleSystem();
+			}
+			_painting = value;
+		}
+	}
+	private BrushContainer _currentlyPaintedContainer;
 	private XRGrabInteractable _grabbable;
 	
 	/// <summary>
@@ -136,6 +156,13 @@ public class OurTexturePainter : MonoBehaviour
 	{
 		if (HitUVPosition(out var uvHitPos, out var brushContainer))
 		{
+			if (_currentlyPaintedContainer != brushContainer)
+			{
+				_currentlyPaintedContainer?.ContainerHolder.SetActive(false);
+
+				_currentlyPaintedContainer = brushContainer;
+				_currentlyPaintedContainer.ContainerHolder.SetActive(true);
+			}
 			var brushObj = Instantiate(BrushEntity, brushContainer.Container.transform, true);
 			brushObj.layer = (int)LayersEnum.RenderTexture;
 			brushObj.transform.localPosition =uvHitPos; //The position of the brush (in the UVMap)
@@ -187,7 +214,7 @@ public class OurTexturePainter : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (_painting)
+		if (Painting)
 		{
 			Paint();
 		}
@@ -195,19 +222,16 @@ public class OurTexturePainter : MonoBehaviour
 
 	private void StopPainting(DeactivateEventArgs arg0)
 	{
-		_painting = false;
-		particleSystemManager.StopParticleSystem();
+		Painting = false;
 	}
 	
 	private void SelectExited(SelectExitEventArgs arg0)
 	{
-		_painting = false;
-		particleSystemManager.StopParticleSystem();
+		Painting = false;
 	}
 
 	private void StartPainting(ActivateEventArgs arg)
 	{
-		_painting = true;
-		particleSystemManager.StartParticleSystem();
+		Painting = true;
 	}
 }

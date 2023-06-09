@@ -1,3 +1,5 @@
+using System.Threading;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
@@ -5,10 +7,11 @@ using UnityEngine.Experimental.Rendering;
 public static class BrushContainerCreator
 {
     private static readonly object Sync = new object();
-    
+    private static int _initializedContainers;
+
     private static readonly Vector3 InitialOffset = new Vector3(0, -1000, 0);
     private static readonly Vector3 OffsetBetweenContainers = new Vector3(20, 0, 0);
-    private static int _initializedContainers;
+    private static readonly GameObject ContainerOfAllBrushContainers = new GameObject("MainBrushContainer");
     private static int InitializedContainers
     {
         get
@@ -70,13 +73,14 @@ public static class BrushContainerCreator
         var curInitializedContainer = InitializedContainers;
         
         // Creating the holder which will hold the render camera and the container for the brushes
-        var holder = new GameObject($"_BrushContainerHolder {curInitializedContainer}")
+        var containerHolder = new GameObject($"_BrushContainerHolder {curInitializedContainer}")
         {
             isStatic = true,
             layer = (int) LayersEnum.RenderTexture,
             transform =
             {
-                position = new Vector3(
+                parent = ContainerOfAllBrushContainers.transform,
+                localPosition = new Vector3(
                     InitialOffset.x + (OffsetBetweenContainers.x * curInitializedContainer),
                     InitialOffset.y,
                     InitialOffset.z + (OffsetBetweenContainers.z * curInitializedContainer)
@@ -91,7 +95,7 @@ public static class BrushContainerCreator
             layer = (int) LayersEnum.RenderTexture,
             transform =
             {
-                parent = holder.transform,
+                parent = containerHolder.transform,
                 localPosition = Vector3.zero
             }
         };
@@ -103,7 +107,7 @@ public static class BrushContainerCreator
             layer = (int) LayersEnum.RenderTexture,
             transform =
             {
-                parent = holder.transform,
+                parent = containerHolder.transform,
                 localPosition = new Vector3(0, 0, -2),
             }
         };  
@@ -121,11 +125,22 @@ public static class BrushContainerCreator
 
         // var extraCameraData = renderCamera.GetComponent<UniversalAdditionalCameraData>();
 
-        return new BaseBrushContainer(
+        var baseBrushContainer =  new BaseBrushContainer(
+            containerHolder,
             container,
             renderCamera.GetComponent<Camera>()
         );
+        
+        // TODO adding a delay is not the most ideal thing
+        Task.Delay(250).GetAwaiter().OnCompleted(() =>
+        {
+            // Waiting for the camera to update the render texture then disabling the whole brush container
+            baseBrushContainer.ContainerHolder.SetActive(false);
+        });
+
+        return baseBrushContainer;
     }
 }
+
 
 
