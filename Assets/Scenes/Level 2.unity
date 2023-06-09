@@ -1578,6 +1578,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680106347}
   m_CullTransparentMesh: 1
+--- !u!114 &1706263941 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8210835608630252350, guid: e0aaf9a00143ee4059f79a01f3031522,
+    type: 3}
+  m_PrefabInstance: {fileID: 8623565874140586665}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598edcf7f2089a2a186777e04be331a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1733475057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,6 +2045,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879483970}
   m_CullTransparentMesh: 1
+--- !u!114 &1950994945 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 703528282890257924, guid: e0aaf9a00143ee4059f79a01f3031522,
+    type: 3}
+  m_PrefabInstance: {fileID: 8623565874140586665}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &2054407905 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5030434202416224483, guid: 86d6fa58c41ad42bd97311dcbd4be974,
@@ -2418,6 +2442,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 703528282890257924, guid: e0aaf9a00143ee4059f79a01f3031522,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 703528282890257924, guid: e0aaf9a00143ee4059f79a01f3031522,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 703528282890257924, guid: e0aaf9a00143ee4059f79a01f3031522,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1706263941}
+    - target: {fileID: 703528282890257924, guid: e0aaf9a00143ee4059f79a01f3031522,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 703528282890257924, guid: e0aaf9a00143ee4059f79a01f3031522,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeStrength
+      objectReference: {fileID: 0}
+    - target: {fileID: 703528282890257924, guid: e0aaf9a00143ee4059f79a01f3031522,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PaintSelectorMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 703528282890257924, guid: e0aaf9a00143ee4059f79a01f3031522,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1950994945}
+    - target: {fileID: 703528282890257924, guid: e0aaf9a00143ee4059f79a01f3031522,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.UI.Slider, UnityEngine.UI
+      objectReference: {fileID: 0}
     - target: {fileID: 1057532384819543790, guid: e0aaf9a00143ee4059f79a01f3031522,
         type: 3}
       propertyPath: m_AnchorMax.x
