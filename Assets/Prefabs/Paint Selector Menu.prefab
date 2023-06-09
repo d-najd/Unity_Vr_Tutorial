@@ -590,10 +590,10 @@ MonoBehaviour:
       - m_Target: {fileID: 8210835608630252350}
         m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
         m_MethodName: ChangeBrushSize
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 536115738696488070}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2513,7 +2513,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8210835608630252350}
+        m_TargetAssemblyTypeName: PaintSelectorMenuManager, Assembly-CSharp
+        m_MethodName: ChangeStrength
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5982117855476936440
 GameObject:
   m_ObjectHideFlags: 0
@@ -4023,6 +4035,8 @@ MonoBehaviour:
   defaultStrength: 1
   defaultSize: 0.5
   defaultUseDecal: 0
+  brushSizeSlider: {fileID: 536115738696488070}
+  brushStrengthSlider: {fileID: 703528282890257924}
 --- !u!1 &8718933308814594960
 GameObject:
   m_ObjectHideFlags: 0

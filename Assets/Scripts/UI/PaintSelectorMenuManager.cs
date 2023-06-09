@@ -24,6 +24,12 @@ public class PaintSelectorMenuManager : MonoBehaviour
     [SerializeField] [Range(0, 1)] private float defaultSize = .25f;
     [SerializeField] private bool defaultUseDecal;
 
+    [Header("Setup")] 
+    [SerializeField] 
+    private Slider brushSizeSlider;
+    [SerializeField] 
+    private Slider brushStrengthSlider;
+
     /// The scale of the preview brush image component when the game goes in runtime
     private Vector3 _previewBrushImageComponentScale;
 
@@ -32,10 +38,15 @@ public class PaintSelectorMenuManager : MonoBehaviour
         texturePainter.BrushSize = defaultSize;
         texturePainter.BrushSpriteRenderer.sprite = defaultPaint;
         texturePainter.BrushColor = defaultColor;
+        texturePainter.BrushStrength = defaultStrength;
         
         SetPreviewBrushPaint(defaultPaint);
         SetPreviewBrushColor(defaultColor);
         SetPreviewBrushSize(defaultSize);
+        SetPreviewBrushStrength(defaultStrength);
+
+        brushSizeSlider.value = defaultSize;
+        brushStrengthSlider.value = defaultStrength;
     }
 
     public void ChangeBrushPaint([NotNull] Image rawImage)
@@ -44,16 +55,16 @@ public class PaintSelectorMenuManager : MonoBehaviour
         SetPreviewBrushPaint(texturePainter.BrushSpriteRenderer.sprite);
     }
 
-    public void ChangeBrushSize([NotNull] Slider slider)
+    public void ChangeBrushSize()
     {
-        texturePainter.BrushSize = slider.value;
+        texturePainter.BrushSize = brushSizeSlider.value;
         SetPreviewBrushSize(texturePainter.BrushSize);
     }
     
-    public void ChangeStrength([NotNull] Slider slider)
+    public void ChangeStrength()
     {
-        texturePainter.BrushStrength = slider.value;
-        SetPreviewBrushStrength(slider.value);
+        texturePainter.BrushStrength = brushStrengthSlider.value;
+        SetPreviewBrushStrength(texturePainter.BrushStrength);
     }
     
     public void ChangeBrushColor([NotNull] Image rawImage)
@@ -61,7 +72,6 @@ public class PaintSelectorMenuManager : MonoBehaviour
         texturePainter.BrushColor = rawImage.color;
         SetPreviewBrushColor(texturePainter.BrushColor);
     }
-
 
     private void SetPreviewBrushPaint([NotNull] Sprite sprite)
     {
@@ -103,5 +113,6 @@ public class PaintSelectorMenuManager : MonoBehaviour
         SetPreviewBrushColor(texturePainter.BrushColor);
         SetPreviewBrushPaint(texturePainter.BrushSpriteRenderer.sprite);
         SetPreviewBrushSize(texturePainter.BrushSize);
+        SetPreviewBrushStrength(texturePainter.BrushStrength);
     }
 }
